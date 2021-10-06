@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>JQuery实现监听获取文本框输入内容</title>
+		<script type="text/javascript" src="../js/jquery/jquery-1.11.1.js"></script>
+	</head>
+	<body>
+		<input type="text" name="name" id="nameInput" />
+		<p>你输入的内容是：<span id="contentSpan"></span></p>
+
+		<script type="text/javascript">
+			$(function () {
+				$('#nameInput').bind('input propertychange', function () {
+					let name = $(this).val()
+					$('#contentSpan').text(name)
+				})
+			})
+		</script>
+	</body>
+</html>
