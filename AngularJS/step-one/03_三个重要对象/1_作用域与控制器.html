@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>第一个 AngularJS 程序</title>
+		<style>
+			input {
+				outline: none;
+				font-size: 14px;
+				line-height: 30px;
+				height: 30px;
+				box-sizing: border-box;
+				padding: 0px 15px;
+				border: 1px solid #dcdfe6;
+				border-bottom-width: 3px;
+				border-radius: 4px;
+				color: #606266;
+			}
+			input::-webkit-input-placeholder,
+			input::-moz-placeholder,
+			input::-ms-input-placeholder {
+				color: #c0c4cc;
+				line-height: normal;
+			}
+			input:hover,
+			input:focus {
+				border-color: #c0c4cc;
+			}
+			input:focus {
+				border-bottom-color: #409eff;
+			}
+		</style>
+		<script src="../js/angular-1.2.29/angular.js"></script>
+	</head>
+	<body ng-app ng-init="age=39">
+		<!--
+      1. 作用域对象：
+        一个 JS 实例对象，ng-app 指令默认会创建一个根作用域对象（$rootScope）
+        它的属性和方法与页面中的指令或表达式是关联的。
+
+      2. 控制器：
+        用来控制 AngularJS 应用数据的实例对象
+        ng-controller 指定控制器构造函数，Angular 会自动 new 此函数创建控制器对象，
+        同时 AngularJS 还有创建一个新的作用域对象 $scope，它是 $rootScope 的子对象
+        在控制器函数中声明 $scope 形参，AngularJS 会自动向 $scope 对象中传入。
+
+    -->
+		<div ng-controller="MyController">
+			<input type="text" placeholder="请输入姓" ng-model="firstName" />
+			<input type="text" placeholder="请输入名" ng-model="lastName" />
+			<p>您的姓名是：{{firstName + '-' + lastName}}</p>
+			<p>您的姓名是：{{getName()}}</p>
+			<p>年龄：{{age}}</p>
+		</div>
+
+		<script>
+			function MyController($scope) {
+				// 形参必须是 $scope
+				console.log(this instanceof MyController) // true
+
+				$scope.firstName = 'Kobe'
+				$scope.lastName = 'Bryant'
+				$scope.getName = function () {
+					return this.firstName + ' ' + this.lastName
+				}
+			}
+		</script>
+	</body>
+</html>
